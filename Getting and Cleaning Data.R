@@ -64,3 +64,29 @@ bind_rows(passed,failed)#join the two tables
 #两个练习
 
 #Lesson 4: Dates and Times with lubridate
+this_day <- today()
+year(this_day)
+wday(this_day)#今天是一周里的第几天
+wday(this_day, label = TRUE)
+this_moment <- now();this_moment
+hour(this_moment)
+my_date <- ymd("1989-05-17");my_date
+class(my_date)
+ymd("1989 May 17")#year month day
+mdy("March 12, 1975")# month day year
+dmy(25081985)
+ymd("1920/1/2")
+ymd_hms(dt1)
+hms("03:22:14")
+ymd(dt2)
+update(this_moment, hours = 8, minutes = 34, seconds = 55)#update this_moment to the new time
+this_moment <- update(this_moment, hours = 10, minutes = 16, seconds = 0)
+nyc <- now(tzone = "America/New_York")#setting the timezone to NYC
+depart <- nyc + days(2)
+depart <- update(depart, hours = 17, minutes = 34)
+arrive <- depart + hours(15) + minutes(50)
+?with_tz; arrive <- with_tz(arrive, tzone = "Asia/Hong_Kong")#transfer your actual time to another timezone
+last_time <- mdy("June 17, 2008", tz = "Singapore");last_time
+?interval;how_long <- interval(start = last_time, end = arrive)
+as.period(how_long)
+stopwatch()# see how long i've been working
