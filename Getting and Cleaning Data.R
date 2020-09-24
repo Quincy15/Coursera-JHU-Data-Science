@@ -32,6 +32,7 @@ mutate(cran3,correct_size = size+1000)
 #summarize
 summarize(cran, avg_bytes = mean(size))
 
+
 #Lesson 2: Grouping and Chaining with dplyr
 cran <- tbl_df(mydf)
 rm("mydf")#remove the original dataframe
@@ -50,6 +51,16 @@ top_unique_sorted <- arrange(top_unique, desc(unique))
 #Lesson 3: Tidying Data with tidyr
 library(tidyr)
 students
-
+gather(students,sex, count, -grade)#when column headers that are values, not variable names（gather把原始数据框第一行作为第二列的变量名（用性别来代替了男和女两个变量），表内数据作为第三列的变量名，“-grade”表示不要第一列）
+res <- gather(students2, sex_class, count, -grade);res#when multiple variables are stored in one column
+?separate;separate(data = res, col = sex_class, into = c("sex","class"))
+parse_number("class5")#只保留数字
+#when multiple observational units are stored in the same table
+#when a single observational unit is stored in multiple tables
+#two tables "passed" and "failed" are given
+passed <- mutate(passed, status = "passed")#add a new column to the passed table called status and the values are all "passed"
+failed <- mutate(failed, status = "failed")#the same as the previous one excpet that the values are "failed"
+bind_rows(passed,failed)#join the two tables
+#两个练习
 
 #Lesson 4: Dates and Times with lubridate
