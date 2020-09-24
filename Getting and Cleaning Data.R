@@ -46,7 +46,10 @@ top_counts_sorted <- arrange(top_counts, desc(count))#按下载数降序排列
 quantile(pack_sum$unique, probs = 0.99)#查看unique的前百分之一
 top_unique <- filter(pack_sum, unique > 465)
 top_unique_sorted <- arrange(top_unique, desc(unique))
-
+#后面教了管道操作符
 #Lesson 3: Tidying Data with tidyr
+library(tidyr)
+students
+
 
 #Lesson 4: Dates and Times with lubridate
