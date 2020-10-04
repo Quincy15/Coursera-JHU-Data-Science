@@ -74,4 +74,4 @@ head(state); table(state$region)#看变量有多少个值
 xyplot(Life.Exp ~ Income | region, data = state, layout = c(4,1))
 #3. ggplot2
 qplot(displ, hwy, data = mpg)
-#Lesson 4 
+#Lesson 5 
