@@ -104,4 +104,20 @@ plot(airquality$Solar.R, airquality$Ozone, main = "Ozone and Solar Radiation")
 plot(airquality$Temp, airquality$Ozone, main = "Ozone and Temperature")
 mtext("Ozone and Weather in New York City", outer = TRUE)
 
-Lesson 6
+#Lesson 6 Lattice Plotting System
+xyplot(Ozone ~ Wind, data = airquality, pch=8, col="red", main="Big Apple Data")
+xyplot(Ozone~Wind | as.factor(Month), data = airquality, layout = c(5,1))
+#lattice graphics functions return an object of class trellis.
+p <- xyplot(Ozone~Wind, data = airquality);p
+p[["formula"]];p[["x.limits"]]
+table(f)
+xyplot(y~x|f, layout = c(2,1))
+source(pathtofile("plot1.R"),local=TRUE)
+myedit("plot2.R")
+source(pathtofile("plot2.R"),local=TRUE)
+str(diamonds)#str很好用，可以看所有变量
+table(diamonds$color)
+table(diamonds$color, diamonds$cut)#color是行向量名称，cut是列向量名称
+myedit("myLabels.R")
+source(pathtofile("myLabels.R"),local=TRUE)
+xyplot(price~carat | color*cut, data = diamonds, strip = FALSE, pch = 20, xlab = myxlab, ylab = myylab, main = "mymain")
