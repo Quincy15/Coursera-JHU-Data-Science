@@ -121,3 +121,20 @@ table(diamonds$color, diamonds$cut)#color是行向量名称，cut是列向量名
 myedit("myLabels.R")
 source(pathtofile("myLabels.R"),local=TRUE)
 xyplot(price~carat | color*cut, data = diamonds, strip = FALSE, pch = 20, xlab = myxlab, ylab = myylab, main = "mymain")
+
+#Lesson 7 
+sample(colors(),10)#The function colors() lists the names of 657 predefined colors you can use in any plotting function.
+pal <- colorRamp(c("red","blue"))#interpolate colors
+pal(0)#returns red;pal(1)#returns blue
+pal(seq(0,1,len = 6))
+p1 <- colorRampPalette(c("red","blue"));p1(2)
+p2 <- colorRampPalette(c("red","yellow"));p2(2)
+showMe(p1(20))
+p3 <- colorRampPalette(c("blue","green"), alpha = 0.5);p3(5)
+plot(x,y, pch = 19, col = rgb(0, .5, .5, .3))
+cols <- brewer.pal(3, "BuGn");showMe(cols)
+pal <- colorRampPalette(cols)
+showMe(pal(20))
+image(volcano, col = pal(20))
+
+#Lesson 8 GGPlot2 Part1
