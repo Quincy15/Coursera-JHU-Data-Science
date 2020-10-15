@@ -137,4 +137,47 @@ pal <- colorRampPalette(cols)
 showMe(pal(20))
 image(volcano, col = pal(20))
 
-#Lesson 8 GGPlot2 Part1
+#Lesson 8&9&10 GGPlot2 
+str(mpg)
+qplot(displ,hwy,data = mpg)
+qplot(displ, hwy, data = mpg, color = drv)#use different colors to distinguish between the 3 factors of drv
+qplot(displ, hwy, data = mpg, color = drv, geom = c("point","smooth"))#add fit line area
+qplot(y=hwy, data = mpg, color = drv)
+qplot(drv, hwy, data = mpg, geom = "boxplot")
+qplot(drv, hwy, data = mpg, geom = "boxplot", color = manufacturer)
+qplot(hwy, data = mpg, fill = drv)
+qplot(displ, hwy, data = mpg, facets = .~drv)# . indicates a single row and drv implies 3, since there are 3 distinct drive factors
+qplot(hwy, data = mpg, facets = drv ~ .,  binwidth = 2)
+qplot(displ, hwy, data = mpg, geom = c("point", "smooth"), facets = .~drv)
+g <- ggplot(mpg, aes(displ, hwy))
+g+geom_point()#数据存储在g中，调用geom_point画图
+g+geom_point()+geom_smooth(method = "lm")#加上了拟合曲线和区间,geom_smooth也可以不加任何参数
+g+geom_point()+geom_smooth(method = "lm")+facet_grid(.~drv)
+g+geom_point()+geom_smooth(method = "lm")+facet_grid(.~drv)+ggtitle("Swirl Rules!")
+g+geom_point(color = "pink", size = 4, alpha = 1/2)
+g+geom_point(aes(color = drv), size = 4, alpha = 1/2)#the color of the points is data dependent, must use aes
+g+geom_point(aes(color = drv))+labs(title = "Swirl Rules!")+labs(x = "Displacement", y = "Hwy Mileage")
+g+geom_point(aes(color = drv), size = 2, alpha = 1/2)+geom_smooth(size = 4, linetype = 3, method = "lm", se = FALSE)
+g+geom_point(aes(color = drv))+theme_bw(base_family = "Times")
+plot(myx,myy,type = "l",ylim = c(-3,3))
+g <- ggplot(testdat,aes(x = myx, y = myy))
+g+geom_line()
+g+geom_line()+ylim(-3,3)
+g+geom_line()+coord_cartesian(ylim = c(-3,3))
+g <- ggplot(mpg, aes(x= displ, y= hwy, color = factor(year)))
+g + geom_point() + facet_grid(drv~cyl,margins=TRUE)+geom_smooth(method="lm",size=2,se=FALSE,color="black")+labs(x = "Displacement", y = "Highway Mileage", title = "Swirl Rules!")
+#using the diamonds dataset
+qplot(price, data = diamonds)#histogram
+range(diamonds$price)
+qplot(price, data = diamonds, binwidth = 18497/30, fill = cut)#"cut" makes the histogram more colorful
+qplot(price, data = diamonds, geom = "density", color= cut)#replot the histogram as a density function which will show the proportion of diamonds
+qplot(carat, price, data = diamonds, color = cut, facets = .~cut)+geom_smooth(method = "lm")
+g <- ggplot(diamonds , aes(depth, price));summary(g)
+g + geom_point(alpha = 1/3)
+cutpoints <- quantile(diamonds$carat,seq(0,1,length=4),na.rm=TRUE)#找到分位点
+diamonds$car2 <- cut(diamonds$carat,cutpoints); stageVariable("diamonds$car2",diamonds$car2)
+g <- ggplot(diamonds, aes(depth, price))
+g+geom_point(alpha=1/3)+facet_grid(cut~car2)+geom_smooth(method="lm",size=3,color="pink")
+ggplot(diamonds,aes(carat,price))+geom_boxplot()+facet_grid(.~cut)
+
+Lesson 11
