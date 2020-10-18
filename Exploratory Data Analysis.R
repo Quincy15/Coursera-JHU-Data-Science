@@ -180,4 +180,15 @@ g <- ggplot(diamonds, aes(depth, price))
 g+geom_point(alpha=1/3)+facet_grid(cut~car2)+geom_smooth(method="lm",size=3,color="pink")
 ggplot(diamonds,aes(carat,price))+geom_boxplot()+facet_grid(.~cut)
 
-Lesson 11
+#Lesson 11 Hierarchical Clustering(层次聚类法)
+#this method is usually most useful in the early stages of analysis when you're trying to get an understanding of the data
+#ways to measure distance: Euclidean distance and correlation similarity, Manhattan distance is a binary measure
+dist(dataFrame)#this function computes and returns the distance matrix
+hc <- hclust(distxy);plot(hc)
+plot(as.dendrogram(hc));abline(h=1.5, col="blue")
+abline(h=.4, col="red")
+abline(h=.05, col="green")
+dist(dFsm)
+#Heat map
+heatmap(dataMatrix, col = cm.colors(25))
+heatmap(mt)
