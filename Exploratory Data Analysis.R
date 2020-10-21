@@ -192,3 +192,50 @@ dist(dFsm)
 #Heat map
 heatmap(dataMatrix, col = cm.colors(25))
 heatmap(mt)
+
+#Lesson 12 K Means Clustering
+cmat
+points(cx, cy, col = c("red", "orange", "purple"), pch = 3, cex = 2, lwd = 2)
+mdist(x, y, cx, cy)
+apply(distTmp, 2, which.min)
+points(x, y, pch =19, cex = 2, col = cols1[newClust])
+tapply(x, newClust, mean)
+tapply(y, newClust, mean)
+points(newCx, newCy, col = cols1, pch = 8, cex = 2, lwd = 2)
+mdist(x,y,newCx,newCy)
+apply(distTmp2, 2, which.min)
+points(x,y,pch=19,cex=2,col=cols1[newClust2])
+tapply(x, newClust2, mean)
+tapply(y, newClust2, mean)
+points(finalCx, finalCy, col = cols1, pch = 9, cex = 2, lwd = 2)
+#kmeans: centers:中心点数，iter.max：最大迭代次数，nstart:随机起点数
+kmeans(dataFrame, centers = 3)
+kmObj$iter
+plot(x, y, col = kmObj$cluster, pch = 19, cex = 2)
+points(kmObj$centers, col = c("black","red","green"), pch = 3, cex = 3, lwd =3)
+plot(x, y, col = kmeans(dataFrame, 6)$cluster, pch =19, cex =2)
+
+#Lesson 13 Dimension Reduction
+head(dataMatrix)
+heatmap(dataMatrix)
+myedit("addPatt.R")
+source("addPatt.R", local = TRUE)
+heatmap(dataMatrix)
+mat
+svd(mat)#singular value decomposition奇异值分解
+matu %*% diag %*% t(matv)
+#PCA, Principal Component Analysis
+svd(scale(mat))#scale标准化或中心化函数，参数赋值为数值，则按此数值做标准化，参数为布尔值，则按均值和标准差做标准化
+prcomp(scale(mat))# get the principal components of mat
+svd1$v[,1]
+svd1$d
+#an example
+dim(faceData)
+a1 <- svd1$u[,1] %*% t(svd1$v[,1]) * svd1$d[1]
+myImage(a1)
+a2 <- svd1$u[,1:2] %*%  diag(svd1$d[1:2])  %*% t(svd1$v[,1:2])
+myImage(a2)
+myImage(svd1$u[,1:5] %*%  diag(svd1$d[1:5])  %*% t(svd1$v[,1:5]))
+myImage(svd1$u[,1:10] %*%  diag(svd1$d[1:10])  %*% t(svd1$v[,1:10]))
+
+#Lesson 14 Clustering Example
